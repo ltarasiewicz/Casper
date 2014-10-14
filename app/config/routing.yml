@@ -1,0 +1,4 @@
+polcode_casper:
+    resource: "@PolcodeCasperBundle/Resources/config/routing.yml"
+    prefix:   /
+

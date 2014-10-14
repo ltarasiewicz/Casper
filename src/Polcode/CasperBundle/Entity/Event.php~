@@ -1,0 +1,81 @@
+<?php
+
+namespace Polcode\CasperBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="event")
+ */
+
+class Event 
+{
+    /**    
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */  
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    protected $name;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $public;
+    
+    /**
+     *  @ORM\Column(type="string", length=50)
+     */
+    protected $country;
+    
+     /**
+     *  @ORM\Column(type="string", length=50)
+     */   
+    protected $city;
+    
+    /**
+     *  @ORM\Column(type="string", length=10)
+     */
+    protected $postocode;
+    
+    /**
+     * @ORM\Column(type="datetimetz")     
+     */
+    protected $date;
+    
+    /**
+     * @ORM\Column(type="integer")   
+     */
+    protected $duration;
+    
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(type="integer")   
+     */    
+    protected $maxGuests;
+
+    /**
+     * @ORM\Column(type="datetimetz")     
+     */
+    protected $signupDeadline;
+    
+    /**
+     * @ORM\Column(type="integer")   
+     */     
+    protected $attendees;
+
+    /**
+     * @ORM\Column(type="integer")   
+     */     
+    protected $invitedGuests;
+      
+}

@@ -1,0 +1,3 @@
+polcode_casper_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PolcodeCasperBundle:Default:index }

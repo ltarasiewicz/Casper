@@ -1,0 +1,46 @@
+<?php
+
+namespace Polcode\CasperBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
+
+class User 
+{
+    /**    
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */  
+    protected $id;
+    
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $email;
+    
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $nickName;    
+    
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $password;
+    
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $dob;    
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $male;
+      
+}
