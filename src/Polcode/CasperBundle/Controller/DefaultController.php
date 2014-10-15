@@ -4,10 +4,13 @@ namespace Polcode\CasperBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('PolcodeCasperBundle:Default:index.html.twig', array('name' => $name));
-    }
+        return $this->render('PolcodeCasperBundle:Default:index.html.twig');
+    }    
+    
 }
+

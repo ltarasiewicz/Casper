@@ -1,4 +1,12 @@
 polcode_casper:
     resource: "@PolcodeCasperBundle/Resources/config/routing.yml"
     prefix:   /
+    
+home_page: 
+    path:   /
+    defaults: { _controller: PolcodeCasperBundle:Default:index }
+
+register_user:
+    path:   /register
+    defaults: { _controller: PolcodeCasperBundle:User:register }
 

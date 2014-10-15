@@ -382,4 +382,60 @@ class Event
     {
         return $this->invitedGuests;
     }
+
+    /**
+     * Set owner
+     *
+     * @param integer $owner
+     * @return Event
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return integer 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Polcode\CasperBundle\Entity\User $users
+     * @return Event
+     */
+    public function addUser(\Polcode\CasperBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Polcode\CasperBundle\Entity\User $users
+     */
+    public function removeUser(\Polcode\CasperBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 }

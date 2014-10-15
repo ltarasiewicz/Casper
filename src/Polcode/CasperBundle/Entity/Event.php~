@@ -3,6 +3,7 @@
 namespace Polcode\CasperBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -27,6 +28,12 @@ class Event
      * @ORM\Column(type="boolean")
      */
     protected $public;
+    
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $owner;
     
     /**
      *  @ORM\Column(type="string", length=50)
@@ -77,5 +84,302 @@ class Event
      * @ORM\Column(type="integer")   
      */     
     protected $invitedGuests;
+    
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
+     */
+    private $users;
+    
+    public function __construct() 
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
       
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Event
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set public
+     *
+     * @param boolean $public
+     * @return Event
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return boolean 
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Event
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return Event
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set postocode
+     *
+     * @param string $postocode
+     * @return Event
+     */
+    public function setPostocode($postocode)
+    {
+        $this->postocode = $postocode;
+
+        return $this;
+    }
+
+    /**
+     * Get postocode
+     *
+     * @return string 
+     */
+    public function getPostocode()
+    {
+        return $this->postocode;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Event
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param integer $duration
+     * @return Event
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return integer 
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set maxGuests
+     *
+     * @param integer $maxGuests
+     * @return Event
+     */
+    public function setMaxGuests($maxGuests)
+    {
+        $this->maxGuests = $maxGuests;
+
+        return $this;
+    }
+
+    /**
+     * Get maxGuests
+     *
+     * @return integer 
+     */
+    public function getMaxGuests()
+    {
+        return $this->maxGuests;
+    }
+
+    /**
+     * Set signupDeadline
+     *
+     * @param \DateTime $signupDeadline
+     * @return Event
+     */
+    public function setSignupDeadline($signupDeadline)
+    {
+        $this->signupDeadline = $signupDeadline;
+
+        return $this;
+    }
+
+    /**
+     * Get signupDeadline
+     *
+     * @return \DateTime 
+     */
+    public function getSignupDeadline()
+    {
+        return $this->signupDeadline;
+    }
+
+    /**
+     * Set attendees
+     *
+     * @param integer $attendees
+     * @return Event
+     */
+    public function setAttendees($attendees)
+    {
+        $this->attendees = $attendees;
+
+        return $this;
+    }
+
+    /**
+     * Get attendees
+     *
+     * @return integer 
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
+    }
+
+    /**
+     * Set invitedGuests
+     *
+     * @param integer $invitedGuests
+     * @return Event
+     */
+    public function setInvitedGuests($invitedGuests)
+    {
+        $this->invitedGuests = $invitedGuests;
+
+        return $this;
+    }
+
+    /**
+     * Get invitedGuests
+     *
+     * @return integer 
+     */
+    public function getInvitedGuests()
+    {
+        return $this->invitedGuests;
+    }
 }

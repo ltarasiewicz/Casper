@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+        
+        {% block stylesheets %}
+            {% stylesheets 
+                'bundles/polcodecasper/css/jumbotron-narrow.css' filter='cssrewrite' 
+                'bundles/polcodecasper/css/bootstrap.min.css' filter='cssrewrite'
+                'bundles/polcodecasper/css/styles.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        
+        {% block javascript %}
+            {% javascripts 
+                'bundles/polcodecasper/js/jquery-1.11.1.min.js' 
+                'bundles/polcodecasper/js/bootstrap.min.js' 
+                'bundles/polcodecasper/js/scripts.js' %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+        
+        <title>{% block title %}Casper - your event management platform{% endblock %}</title>      
+    </head>
+  <body>
+
+    <div class="container">
+      <div class="header">
+          
+        {% set findActive =  app.request.attributes.get('_route') == 'home_page' ? 'active' %}
+          
+        {% block navigation %}          
+            <ul class="nav nav-pills pull-right">
+              <li class="{{ findActive }}"><a href="{{ path('home_page') }}">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="{{ path('register_user') }}">Register</a></li>
+            </ul>
+        {% endblock %}
+        
+        <h3 class="text-muted">{% block projectName %}Casper{% endblock %}</h3>
+        
+        
+      </div>
+        
+        {% block jumbotron %}
+          <div class="jumbotron">
+            <h1>Jumbotron heading</h1>
+            <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+          </div>
+        {% endblock %}
+
+      <div class="row marketing">
+        {% block content %}
+            <div class="col-lg-6">
+              <h4>Subheading</h4>
+              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+              <h4>Subheading</h4>
+              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+              <h4>Subheading</h4>
+              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+
+            <div class="col-lg-6">
+              <h4>Subheading</h4>
+              <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+              <h4>Subheading</h4>
+              <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+              <h4>Subheading</h4>
+              <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+        {% endblock %}
+      </div>
+
+      <div class="footer">
+          
+         {% block footer %}
+            <p>&copy; Casper 2014</p>
+         {% endblock %}
+         
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>  
+

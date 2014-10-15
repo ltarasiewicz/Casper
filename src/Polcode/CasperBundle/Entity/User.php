@@ -20,27 +20,27 @@ class User
     protected $id;
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $email;
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $nickName;    
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $password;
     
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $dob;    
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $male;
     
@@ -179,5 +179,38 @@ class User
     public function getMale()
     {
         return $this->male;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $events
+     * @return User
+     */
+    public function addEvent(\Polcode\CasperBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $events
+     */
+    public function removeEvent(\Polcode\CasperBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }
