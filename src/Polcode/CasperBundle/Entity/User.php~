@@ -20,29 +20,34 @@ class User
     protected $id;
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $email;
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $nickName;    
     
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $password;
     
-    /**
-     * @ORM\Column(type="date")
+     /**
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $dob;    
+    protected $repeatPassword;
     
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="date", nullable=true)
      */
-    protected $male;
+    protected $dateOfBirth;    
+    
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    protected $gender;
     
     /**
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
@@ -136,48 +141,81 @@ class User
     }
 
     /**
-     * Set dob
+     * Set dateOfBirth
      *
-     * @param \DateTime $dob
+     * @param \DateTime $dateOfBirth
      * @return User
      */
-    public function setDob($dob)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->dob = $dob;
+        $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
     /**
-     * Get dob
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Add events
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $events
+     * @return User
+     */
+    public function addEvent(\Polcode\CasperBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $events
+     */
+    public function removeEvent(\Polcode\CasperBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    /**
+     * Get dateOfBirth
      *
      * @return \DateTime 
      */
-    public function getDob()
+    public function getDateOfBirth()
     {
-        return $this->dob;
-    }
-
-    /**
-     * Set male
-     *
-     * @param boolean $male
-     * @return User
-     */
-    public function setMale($male)
-    {
-        $this->male = $male;
-
-        return $this;
-    }
-
-    /**
-     * Get male
-     *
-     * @return boolean 
-     */
-    public function getMale()
-    {
-        return $this->male;
+        return $this->dateOfBirth;
     }
 }

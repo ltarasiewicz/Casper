@@ -26,16 +26,14 @@
   <body>
 
     <div class="container">
-      <div class="header">
-          
-        {% set findActive =  app.request.attributes.get('_route') == 'home_page' ? 'active' %}
+      <div class="header">          
           
         {% block navigation %}          
             <ul class="nav nav-pills pull-right">
-              <li class="{{ findActive }}"><a href="{{ path('home_page') }}">Home</a></li>
+              <li class="{{ app.request.attributes.get('_route') == 'home_page' ? 'active' }}"><a href="{{ path('home_page') }}">Home</a></li>
               <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-              <li><a href="{{ path('register_user') }}">Register</a></li>
+              <li><a href="#">Login</a></li>
+              <li class="{{ app.request.attributes.get('_route') == 'register_user' ? 'active' }}"><a href="{{ path('register_user') }}">Register</a></li>
             </ul>
         {% endblock %}
         
@@ -44,11 +42,17 @@
         
       </div>
         
+        {% for flashMessage in app.session.flashbag.get('registration_success') %}
+            <div class="alert alert-success" role="alert">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        
         {% block jumbotron %}
           <div class="jumbotron">
             <h1>Jumbotron heading</h1>
             <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+            <p><a class="btn btn-lg btn-success" href="{{ path('register_user') }}" role="button">Sign up today</a></p>
           </div>
         {% endblock %}
 

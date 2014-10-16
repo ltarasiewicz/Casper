@@ -1,0 +1,28 @@
+Polcode\CasperBundle\Entity\User:
+    properties:
+        email:
+            - NotBlank: ~
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+                checkMX: true
+        nickName:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 50
+                minMessage: "Your nickname must be at least {{ limit }} characters long"
+                maxMessage: "Your first name cannot be longer than {{ limit }} characters long"
+        password:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 50
+                minMessage: "Your password must be at least {{ limit }} characters long"
+                maxMessage: "Your password cannot be longer than {{ limit }} characters long"
+        dateOfBirth:
+            - NotBlank: ~
+            - Date: ~
+        gender:
+            - NotBlank: ~
+            - Choice: { choices: [Male, Female], message: Choose a valid gender. }
+            

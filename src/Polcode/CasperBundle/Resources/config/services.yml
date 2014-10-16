@@ -1,4 +1,5 @@
 services:
-#    polcode_casper.example:
-#        class: Polcode\CasperBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    polcode_casper.form.type.user:
+        class: Polcode\CasperBundle\Form\Type\UserType
+        tags:
+            - { name: form.type, alias: user }

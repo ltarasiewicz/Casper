@@ -1,0 +1,19 @@
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group">
+            {{ form_label(form, null, { 'label_attr': {'class': ''} }) }}
+            {{ form_errors(form) }}
+            {{ form_widget(form, { 'attr': {'placeholder': form.vars.label, 'class': 'col-sm-6 form-control'} }) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block button_row %}
+    {% spaceless %}
+        <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+                {{ form_widget(form, { 'attr': {'class': 'btn btn-default'} }) }}
+            </div>
+        </div>        
+    {% endspaceless %}
+{% endblock button_row %}

@@ -34,15 +34,20 @@ class User
      */
     protected $password;
     
+     /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    protected $repeatPassword;
+    
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    protected $dob;    
+    protected $dateOfBirth;    
     
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
-    protected $male;
+    protected $gender;
     
     /**
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
@@ -136,49 +141,39 @@ class User
     }
 
     /**
-     * Set dob
+     * Set dateOfBirth
      *
-     * @param \DateTime $dob
+     * @param \DateTime $dateOfBirth
      * @return User
      */
-    public function setDob($dob)
+    public function setDateOfBirth($dateOfBirth)
     {
-        $this->dob = $dob;
+        $this->dateOfBirth = $dateOfBirth;
 
         return $this;
     }
 
     /**
-     * Get dob
+     * Set gender
      *
-     * @return \DateTime 
-     */
-    public function getDob()
-    {
-        return $this->dob;
-    }
-
-    /**
-     * Set male
-     *
-     * @param boolean $male
+     * @param string $gender
      * @return User
      */
-    public function setMale($male)
+    public function setGender($gender)
     {
-        $this->male = $male;
+        $this->gender = $gender;
 
         return $this;
     }
 
     /**
-     * Get male
+     * Get gender
      *
-     * @return boolean 
+     * @return string 
      */
-    public function getMale()
+    public function getGender()
     {
-        return $this->male;
+        return $this->gender;
     }
 
     /**
@@ -212,5 +207,38 @@ class User
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * Get dateOfBirth
+     *
+     * @return \DateTime 
+     */
+    public function getDateOfBirth()
+    {
+        return $this->dateOfBirth;
+    }
+
+    /**
+     * Set repeatPassword
+     *
+     * @param string $repeatPassword
+     * @return User
+     */
+    public function setRepeatPassword($repeatPassword)
+    {
+        $this->repeatPassword = $repeatPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get repeatPassword
+     *
+     * @return string 
+     */
+    public function getRepeatPassword()
+    {
+        return $this->repeatPassword;
     }
 }
