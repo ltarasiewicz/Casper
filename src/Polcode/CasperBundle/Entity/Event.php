@@ -31,11 +31,6 @@ class Event
     
     
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $owner;
-    
-    /**
      *  @ORM\Column(type="string", length=50)
      */
     protected $country;
@@ -89,11 +84,17 @@ class Event
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
      */
-    private $users;
+    protected $users;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedEvents")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     */
+    protected $owner;
     
     public function __construct() 
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
       
 

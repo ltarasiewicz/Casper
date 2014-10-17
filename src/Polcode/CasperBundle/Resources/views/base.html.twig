@@ -16,9 +16,14 @@
             {% javascripts 
                 'bundles/polcodecasper/js/jquery-1.11.1.min.js' 
                 'bundles/polcodecasper/js/bootstrap.min.js' 
-                'bundles/polcodecasper/js/scripts.js' %}
+                'bundles/polcodecasper/js/scripts.js' 
+                'bundles/polcodecasper/js/facebook-sdk.js' %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
+        {% endblock %}
+        
+        {% block extrascripts %}
+            
         {% endblock %}
         
         <title>{% block title %}Casper - your event management platform{% endblock %}</title>      
@@ -29,11 +34,18 @@
       <div class="header">          
           
         {% block navigation %}          
-            <ul class="nav nav-pills pull-right">
-              <li class="{{ app.request.attributes.get('_route') == 'home_page' ? 'active' }}"><a href="{{ path('home_page') }}">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li class="{{ app.request.attributes.get('_route') == 'login_page' ? 'active' }}"><a href="{{ path('login_page') }}">Login</a></li>
-              <li class="{{ app.request.attributes.get('_route') == 'register_page' ? 'active' }}"><a href="{{ path('register_page') }}">Register</a></li>
+            <ul class="nav nav-pills pull-right">               
+                <li class="{{ app.request.attributes.get('_route') == 'home_page' ? 'active' }}"><a href="{{ path('home_page') }}">Home</a></li>
+                <li><a href="#">About</a></li>    
+                
+                {% if app.user %}
+                    <li><a href="#">Add event</a></li>
+                    <li><a href="{{ path('logout') }}">Logout</a></li>
+                {% else %}
+                    <li class="{{ app.request.attributes.get('_route') == 'register_page' ? 'active' }}"><a href="{{ path('register_page') }}">Register</a></li>
+                    <li class="{{ app.request.attributes.get('_route') == 'login_page' ? 'active' }}"><a href="{{ path('login_page') }}">Login</a></li>
+                {% endif %}
+                                                                  
             </ul>
         {% endblock %}
         

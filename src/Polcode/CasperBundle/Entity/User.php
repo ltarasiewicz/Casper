@@ -30,7 +30,7 @@ class User implements UserInterface, \Serializable
     protected $username;    
     
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $password;
    
@@ -48,11 +48,16 @@ class User implements UserInterface, \Serializable
      * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
      * @ORM\JoinTable(name="users_events")
      */
-    private $events;
+    protected $events;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Event", mappedBy="owner")
+     */    
+    protected $ownedEvents;
     
     public function __construct() 
     {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->groups = new ArrayCollection();
     }
       
 
