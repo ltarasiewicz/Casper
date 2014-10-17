@@ -5,7 +5,7 @@ Polcode\CasperBundle\Entity\User:
             - Email:
                 message: The email "{{ value }}" is not a valid email.
                 checkMX: true
-        nickName:
+        username:
             - NotBlank: ~
             - Length:
                 min: 6

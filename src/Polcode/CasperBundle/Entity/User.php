@@ -1,17 +1,16 @@
 <?php
-
 namespace Polcode\CasperBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-
-class User 
+class User implements UserInterface, \Serializable
 {
     /**    
      * @ORM\Column(type="integer")
@@ -28,18 +27,13 @@ class User
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $nickName;    
+    protected $username;    
     
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     protected $password;
-    
-     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    protected $repeatPassword;
-    
+   
     /**
      * @ORM\Column(type="date", nullable=true)
      */
@@ -61,6 +55,69 @@ class User
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
     }
       
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+    
+    /**
+     * @inheritDoc
+     */    
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @inheritDoc
+     */    
+    public function getRoles() 
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */    
+    public function eraseCredentials() 
+    {        
+    }
+    
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
+    
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,            
+            $this->usernamem,
+        ) = unserialize($serialized);
+    }
+
 
     /**
      * Get id
@@ -96,29 +153,6 @@ class User
     }
 
     /**
-     * Set nickName
-     *
-     * @param string $nickName
-     * @return User
-     */
-    public function setNickName($nickName)
-    {
-        $this->nickName = $nickName;
-
-        return $this;
-    }
-
-    /**
-     * Get nickName
-     *
-     * @return string 
-     */
-    public function getNickName()
-    {
-        return $this->nickName;
-    }
-
-    /**
      * Set password
      *
      * @param string $password
@@ -129,16 +163,6 @@ class User
         $this->password = $password;
 
         return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -221,25 +245,23 @@ class User
     }
 
     /**
-     * Set repeatPassword
+     * Set username
      *
-     * @param string $repeatPassword
+     * @param string $username
      * @return User
      */
-    public function setRepeatPassword($repeatPassword)
+    public function setUsername($username)
     {
-        $this->repeatPassword = $repeatPassword;
+        $this->username = $username;
 
         return $this;
     }
-
-    /**
-     * Get repeatPassword
-     *
-     * @return string 
-     */
-    public function getRepeatPassword()
+    
+    public function encodePassword($factory)
     {
-        return $this->repeatPassword;
+        $encoder = $factory->getEncoder($this);
+        $password = $encoder->encodePassword($this->getPassword(), $this->getSalt());
+        $this->setPassword($password);
     }
+    
 }

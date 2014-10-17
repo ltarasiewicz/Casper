@@ -12,23 +12,11 @@
 {% block content %}
     {{ form_start(form, { 'attr': {'class': 'form-horizontal col-sm-offset-2 col-sm-8' }}) }}
         {{ form_errors(form) }}
-        {{ form_row(form.nickName) }}
+        {{ form_row(form.username) }}
         {{ form_row(form.email) }}
         {{ form_row(form.dateOfBirth) }}
         {{ form_row(form.gender) }}
         {{ form_row(form.password) }}
         {{ form_row(form.register) }}
-    {{ form_end(form) }}
-    
-    <div class="registration-container">
-      <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>  
-    </div>
+    {{ form_end(form) }}   
 {% endblock %}

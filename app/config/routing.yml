@@ -6,7 +6,14 @@ home_page:
     path:   /
     defaults: { _controller: PolcodeCasperBundle:Default:index }
 
-register_user:
+register_page:
     path:   /register
     defaults: { _controller: PolcodeCasperBundle:User:register }
+    
+login_page:
+    path:   /login
+    defaults: { _controller: PolcodeCasperBundle:User:login }    
+    
+login_check:
+    path: /login_check
 
