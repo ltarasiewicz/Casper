@@ -14,6 +14,22 @@ add_event:
     path:   /add
     defaults:   { _controller: PolcodeCasperBundle:Event:addEvent }
     
+public_events:
+    path:   /public
+    defaults:   { _controller: PolcodeCasperBundle:Event:showPublicEvents }    
+    
+single_event:
+    path:   /single/{id}
+    defaults:   { _controller: PolcodeCasperBundle:Event:showSingleEvent }   
+    
+my_events:
+    path: /events
+    defaults:   { _controller: PolcodeCasperBundle:Event:showUserEvents }
+    
+edit_event:
+    path: /edit/{id}
+    defaults:   { _controller: PolcodeCasperBundle:Event:editEvent }
+    
 login_page:
     path:   /login
     defaults: { _controller: PolcodeCasperBundle:User:login }    

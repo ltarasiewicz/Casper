@@ -1,0 +1,27 @@
+{% form_theme form 'PolcodeCasperBundle:Form:fields.html.twig' %}
+
+{% extends "PolcodeCasperBundle::base.html.twig" %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+        <h1>Edit event</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+    </div>    
+{% endblock %}
+
+{% block content %}
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal col-sm-offset-2 col-sm-8' }}) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.public) }}
+        {{ form_row(form.country) }}
+        {{ form_row(form.city) }}
+        {{ form_row(form.postcode) }}
+        {{ form_row(form.date) }}       
+        {{ form_row(form.duration) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.maxGuests) }}
+        {{ form_row(form.signupDeadline) }}
+        {{ form_row(form.register,{label:'Edit'})}}
+    {{ form_end(form) }}   
+{% endblock %}

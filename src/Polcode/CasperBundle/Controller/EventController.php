@@ -30,4 +30,60 @@ class EventController extends Controller
         }
         return $this->render('PolcodeCasperBundle:Event:add.html.twig', array('form' => $form->createView()));        
     }
+    
+    public function showPublicEventsAction()
+    {
+        $publicEvents = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->findBy(
+                      array('public' => true)
+                );
+        
+        return $this->render('PolcodeCasperBundle:Event:public.html.twig', array('publicEvents' => $publicEvents));
+    }
+    
+    public function showSingleEventAction($id)
+    {
+        $singleEvent = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->find($id);
+        
+        return $this->render('PolcodeCasperBundle:Event:single.html.twig', array('singleEvent' => $singleEvent));
+        
+    }
+    
+    public function showUserEventsAction()
+    {       
+        $user = $this->getUser();
+        
+        $ownedEvents = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->findBy(array(
+                    'id' => $user,
+                ));
+                
+        return $this->render('PolcodeCasperBundle:Event:my.html.twig', array('ownedEvents' => $ownedEvents));
+    }
+    
+    public function editEventAction($id, Request $request)
+    {
+        $eventToEdit = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->find($id);
+        $form = $this->createForm('event', $eventToEdit);
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();                    
+                       
+            $em->persist($eventToEdit);
+            $em->flush();
+                       
+        }
+                
+        return $this->render('PolcodeCasperBundle:Event:edit.html.twig', array('form' => $form->createView()));
+    }
+    
 }

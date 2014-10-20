@@ -7,7 +7,8 @@
             {% stylesheets 
                 'bundles/polcodecasper/css/jumbotron-narrow.css' filter='cssrewrite' 
                 'bundles/polcodecasper/css/bootstrap.min.css' filter='cssrewrite'
-                'bundles/polcodecasper/css/styles.css' filter='cssrewrite' %}
+                'bundles/polcodecasper/css/styles.css' filter='cssrewrite'
+                'bundles/polcodecasper/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' filter='cssrewrite'%}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -17,7 +18,9 @@
                 'bundles/polcodecasper/js/jquery-1.11.1.min.js' 
                 'bundles/polcodecasper/js/bootstrap.min.js' 
                 'bundles/polcodecasper/js/scripts.js' 
-                'bundles/polcodecasper/js/facebook-sdk.js' %}
+                'bundles/polcodecasper/js/facebook-sdk.js'
+                'bundles/polcodecasper/bower_components/moment/min/moment.min.js'
+                'bundles/polcodecasper/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}
@@ -34,13 +37,15 @@
       <div class="header">          
           
         {% block navigation %}          
-            <ul class="nav nav-pills pull-right">               
+            <ul class="nav nav-pills pull-right">
+                
                 <li class="{{ app.request.attributes.get('_route') == 'home_page' ? 'active' }}"><a href="{{ path('home_page') }}">Home</a></li>
-                <li><a href="#">About</a></li>    
+                <li class="{{ app.request.attributes.get('_route') == 'public_events' ? 'active' }}"><a href="{{ path('public_events') }}">Public events</a></li>    
                 
                 {% if app.user %}
-                    <li><a href="{{ path('add_event') }}">Add event</a></li>
-                    <li><a href="{{ path('logout') }}">Logout</a></li>
+                    <li class="{{ app.request.attributes.get('_route') == 'add_event' ? 'active' }}"><a href="{{ path('add_event') }}">Add event</a></li>
+                    <li class="{{ app.request.attributes.get('_route') == 'my_events' ? 'active' }}"><a href="{{ path('my_events') }}">My events</a></li>
+                    <li class="{{ app.request.attributes.get('_route') == 'logout' ? 'active' }}"><a href="{{ path('logout') }}">Logout</a></li>
                 {% else %}
                     <li class="{{ app.request.attributes.get('_route') == 'register_page' ? 'active' }}"><a href="{{ path('register_page') }}">Register</a></li>
                     <li class="{{ app.request.attributes.get('_route') == 'login_page' ? 'active' }}"><a href="{{ path('login_page') }}">Login</a></li>

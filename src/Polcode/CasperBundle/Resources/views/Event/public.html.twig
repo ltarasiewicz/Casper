@@ -1,0 +1,33 @@
+{% extends "PolcodeCasperBundle::base.html.twig" %}
+
+{% block jumbotron %}
+    <div class="jumbotron">
+        <h1>Check out the incoming public events</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+    </div>    
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>City</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for publicEvent in publicEvents %}
+                <tr>
+                    <th><a href="{{ path('single_event', {'id': publicEvent.id}) }}">{{ publicEvent.name }}</a></th>
+                    <th>{{ publicEvent.date|date('Y-m-d') }}</th>
+                    <th>{{ publicEvent.city }}</th>
+                    <th>{{ publicEvent.description }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
