@@ -43,7 +43,7 @@ class Event
     /**
      *  @ORM\Column(type="string", length=10)
      */
-    protected $postocode;
+    protected $postcode;
     
     /**
      * @ORM\Column(type="datetimetz")     
@@ -70,13 +70,9 @@ class Event
      */
     protected $signupDeadline;
     
-    /**
-     * @ORM\Column(type="integer")   
-     */     
-    protected $attendees;
-
-    /**
-     * @ORM\Column(type="integer")   
+     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="eventsInvitedTo")  
+     * @ORM\JoinTable(name="invitedGuests_eventsInvitedTo")
      */     
     protected $invitedGuests;
     
@@ -84,7 +80,7 @@ class Event
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
      */
-    protected $users;
+    protected $attendees;
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedEvents")
@@ -206,9 +202,9 @@ class Event
      * @param string $postocode
      * @return Event
      */
-    public function setPostocode($postocode)
+    public function setPostcode($postcode)
     {
-        $this->postocode = $postocode;
+        $this->postcode = $postcode;
 
         return $this;
     }
@@ -218,9 +214,9 @@ class Event
      *
      * @return string 
      */
-    public function getPostocode()
+    public function getPostcode()
     {
-        return $this->postocode;
+        return $this->postcode;
     }
 
     /**

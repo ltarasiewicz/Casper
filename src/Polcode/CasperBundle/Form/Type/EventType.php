@@ -15,33 +15,46 @@ class EventType extends AbstractType
                 'label' =>  'Name of the event'
             ))
             ->add('public', 'choice', array(
-                'label' =>  'Public/private'
+                'label' =>  'Public/private',
+                'choices'   =>  array(1 => 'Public', 0 => 'Private')
             ))
             ->add('country', 'text', array(
                 'label' => 'country',
             ))
-            ->add('gender', 'choice', array(
-                'choices'   =>  array('Male' => 'Male', 'Female' => 'Female')
-            ))                
-            ->add('password', 'repeated', array(
-                'type'              =>  'password',
-                'invalid_message'   =>  'The password fields must match.',
-                'first_options'     =>  array('label'   =>  'Password'),
-                'second_options'    =>  array('label'   =>  'Repeat Password'),
+            ->add('city', 'text', array(
+                'label'   =>  'City'
+            ))             
+            ->add('postcode', 'text', array(
+                'label'   =>  'Postcode'
             ))
+            ->add('date', 'datetime', array(
+                'label'   =>  'Date'
+            ))                
+            ->add('duration', 'integer', array(
+                'label'   =>  'Duration'
+            ))                
+            ->add('description', 'textarea', array(
+                'label'   =>  'Description'
+            ))                
+            ->add('maxGuests', 'integer', array(
+                'label'   =>  'Max no. of guests'
+            ))                
+            ->add('signupDeadline', 'datetime', array(
+                'label'   =>  'Signup deadline'
+            ))                    
             ->add('register', 'submit', array(
-                'label' => 'Sign Up'));        
+                'label' => 'Add event'));        
     }
     
     public function getName()
     {
-        return 'user';
+        return 'event';
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver) 
     {       
         $resolver->setDefaults(array(
-           'data_class' => 'Polcode\CasperBundle\Entity\User',
+           'data_class' => 'Polcode\CasperBundle\Entity\Event',
         ));
     }
     

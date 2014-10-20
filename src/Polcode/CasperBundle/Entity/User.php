@@ -45,10 +45,15 @@ class User implements UserInterface, \Serializable
     protected $gender;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="users")
-     * @ORM\JoinTable(name="users_events")
+     * @ORM\ManyToMany(targetEntity="Event", inversedBy="attendees")
+     * @ORM\JoinTable(name="attendees_events")
      */
     protected $events;
+           
+    /**
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="invitedGuests")
+     */
+    protected $eventsInvitedTo;
     
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="owner")

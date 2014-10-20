@@ -39,7 +39,7 @@
                 <li><a href="#">About</a></li>    
                 
                 {% if app.user %}
-                    <li><a href="#">Add event</a></li>
+                    <li><a href="{{ path('add_event') }}">Add event</a></li>
                     <li><a href="{{ path('logout') }}">Logout</a></li>
                 {% else %}
                     <li class="{{ app.request.attributes.get('_route') == 'register_page' ? 'active' }}"><a href="{{ path('register_page') }}">Register</a></li>

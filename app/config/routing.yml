@@ -10,6 +10,10 @@ register_page:
     path:   /register
     defaults: { _controller: PolcodeCasperBundle:User:register }
     
+add_event:
+    path:   /add
+    defaults:   { _controller: PolcodeCasperBundle:Event:addEvent }
+    
 login_page:
     path:   /login
     defaults: { _controller: PolcodeCasperBundle:User:login }    

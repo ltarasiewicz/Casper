@@ -1,5 +1,4 @@
 <?php
-
 namespace Polcode\CasperBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

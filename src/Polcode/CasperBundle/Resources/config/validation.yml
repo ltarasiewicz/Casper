@@ -25,4 +25,29 @@ Polcode\CasperBundle\Entity\User:
         gender:
             - NotBlank: ~
             - Choice: { choices: [Male, Female], message: Choose a valid gender. }
-            
+
+Polcode\CasperBundle\Entity\User:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 50
+        public:
+            - NotBlank: ~
+        country:
+            - NotBlank: ~
+        city:
+            - NotBlank: 
+        postcode:
+            - NotBlank: ~                        
+        date:
+            - NotBlank: ~    
+        duration:
+            - NotBlank: 
+        description:
+            - NotBlank: ~                        
+        maxGuests:
+            - NotBlank: ~    
+        signupDeadline:
+            - NotBlank: ~              
