@@ -1,7 +1,6 @@
 <?php
 namespace Polcode\CasperBundle\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,16 +44,24 @@ class User implements UserInterface, \Serializable
     protected $gender;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="attendees")
-     * @ORM\JoinTable(name="attendees_events")
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="user")
      */
-    protected $events;
-           
-    /**
-     * @ORM\ManyToMany(targetEntity="Event", mappedBy="invitedGuests")
-     */
-    protected $eventsInvitedTo;
+    protected $invitations;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="sender")
+     */
+    protected $sentInvitations;
+    
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="guests")
+     */
+    protected $acceptedEvents;
+
+
+
+
     /**
      * @ORM\OneToMany(targetEntity="Event", mappedBy="owner")
      */    

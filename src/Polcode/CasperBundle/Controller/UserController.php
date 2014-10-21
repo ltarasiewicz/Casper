@@ -66,6 +66,22 @@ class UserController extends Controller {
             return $this->redirect($this->generateUrl('home_page'));
         }
         return $this->render('PolcodeCasperBundle:User:register.html.twig', array('form' => $form->createView()));
-    }     
+    }  
+    
+    public function getAllUsersAction($id)
+    {
+        $repository = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:User');
+        
+        $users = $repository->findAll();
+        
+        $repository = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event');
+        
+        $eventToInviteTo = $repository->find($id);
+        
+        return $this->render('PolcodeCasperBundle:Event:invite.html.twig', array('users' => $users, 'eventToInviteTo' => $eventToInviteTo));
+        
+    }
     
 }

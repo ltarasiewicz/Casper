@@ -30,6 +30,14 @@ edit_event:
     path: /edit/{id}
     defaults:   { _controller: PolcodeCasperBundle:Event:editEvent }
     
+ajax_remove_event:
+    path: /remove/{id}
+    defaults:   { _controller: PolcodeCasperBundle:Event:removeEvent }
+    
+invite_page:
+    path: /invite/{id}
+    defaults:   { _controller: PolcodeCasperBundle:User:getAllUsers }
+    
 login_page:
     path:   /login
     defaults: { _controller: PolcodeCasperBundle:User:login }    

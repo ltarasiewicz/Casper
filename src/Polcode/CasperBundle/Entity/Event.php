@@ -1,5 +1,4 @@
 <?php
-
 namespace Polcode\CasperBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="event")
  */
-
 class Event 
 {
     /**    
@@ -70,18 +68,19 @@ class Event
      */
     protected $signupDeadline;
     
-     /**
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="eventsInvitedTo")  
-     * @ORM\JoinTable(name="invitedGuests_eventsInvitedTo")
-     */     
-    protected $invitedGuests;
-    
-    
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="acceptedEvents")
+     * @ORM\JoinTable(name="Guests")
      */
-    protected $attendees;
+    protected $guests;
     
+     
+    /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="event")
+     */    
+    protected $invitations;
+        
+   
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedEvents")
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")

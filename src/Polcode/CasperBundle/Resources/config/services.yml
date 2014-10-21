@@ -7,4 +7,5 @@ services:
     polcode_casper.form.type.event:
         class: Polcode\CasperBundle\Form\Type\EventType
         tags:
-            - { name: form.type, alias: event }
+            - { name: form.type, alias: event }         
+            

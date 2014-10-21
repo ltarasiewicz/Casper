@@ -7,6 +7,7 @@ use Polcode\CasperBundle\Entity\User;
 use Polcode\CasperBundle\Form\Type\EventType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventController extends Controller 
 {
@@ -59,7 +60,7 @@ class EventController extends Controller
         $ownedEvents = $this->getDoctrine()
                 ->getRepository('PolcodeCasperBundle:Event')
                 ->findBy(array(
-                    'id' => $user,
+                    'owner' => $user,
                 ));
                 
         return $this->render('PolcodeCasperBundle:Event:my.html.twig', array('ownedEvents' => $ownedEvents));
@@ -70,6 +71,11 @@ class EventController extends Controller
         $eventToEdit = $this->getDoctrine()
                 ->getRepository('PolcodeCasperBundle:Event')
                 ->find($id);
+        
+        if ( ! $eventToEdit ) {
+            throw $this->createNotFoundException('The event does not exist');
+        }
+        
         $form = $this->createForm('event', $eventToEdit);
         
         $form->handleRequest($request);
@@ -78,12 +84,31 @@ class EventController extends Controller
             
             $em = $this->getDoctrine()->getManager();                    
                        
-            $em->persist($eventToEdit);
             $em->flush();
                        
         }
                 
         return $this->render('PolcodeCasperBundle:Event:edit.html.twig', array('form' => $form->createView()));
     }
+    
+    public function removeEventAction($id, Request $request)
+    {
+        $eventToRemove = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->find($id);
+        
+        if ( ! $eventToRemove) {
+            throw $this->createNotFoundException('The event does not exist');
+        }
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->remove($eventToRemove);
+        
+        $em->flush();
+        
+        return new Response('OK');
+        
+    }    
     
 }

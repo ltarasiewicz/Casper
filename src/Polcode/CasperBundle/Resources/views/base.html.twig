@@ -13,6 +13,10 @@
             {% endstylesheets %}
         {% endblock %}
         
+        {% block extrascripts %}
+              
+        {% endblock %}
+        
         {% block javascript %}
             {% javascripts 
                 'bundles/polcodecasper/js/jquery-1.11.1.min.js' 
@@ -25,9 +29,7 @@
             {% endjavascripts %}
         {% endblock %}
         
-        {% block extrascripts %}
-            
-        {% endblock %}
+
         
         <title>{% block title %}Casper - your event management platform{% endblock %}</title>      
     </head>
