@@ -62,8 +62,22 @@ class EventController extends Controller
                 ->findBy(array(
                     'owner' => $user,
                 ));
+        
+        $userInvitations = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Invitation')
+                ->findBy(array(
+                    'user'  =>  $user,
+                ));
+        
+        $eventsInvitedTo = $this->getDoctrine()
+                ->getRepository('PolcodeCasperBundle:Event')
+                ->getEventsUserIsInvitedTo($user);
+        
                 
-        return $this->render('PolcodeCasperBundle:Event:my.html.twig', array('ownedEvents' => $ownedEvents));
+        return $this->render('PolcodeCasperBundle:Event:my.html.twig', array(
+            'ownedEvents'       =>  $ownedEvents, 
+            'eventsInvitedTo'   =>  $eventsInvitedTo,
+            ));
     }
     
     public function editEventAction($id, Request $request)

@@ -19,7 +19,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Events created by you</th>                    
+                    <th>Events created by me</th>                    
                 </tr>
                 <tr>
                     <th>Name</th>
@@ -43,5 +43,36 @@
                 {% endfor %}
             </tbody>
         </table>
+            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Events I am invited to</th>                    
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>City</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for eventInvitedTo in eventsInvitedTo %}
+                <tr>
+                    <td>{{ eventInvitedTo.event.name }}</td>
+                    <td>{{ eventInvitedTo.event.date|date('Y-m-d') }}</td>
+                    <td>{{ eventInvitedTo.event.city }}</td>   
+                    
+                    <td>                          
+                        <a href="{{ path('accept_event', {'id': eventInvitedTo.event.id}) }}" id="remove-event"><span class="glyphicon glyphicon-ok"></span></a>
+                        <a href="{{ path('decline_event', {'id': eventInvitedTo.event.id}) }}"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                    <td>{{ eventInvitedTo.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>            
+            
     </div>                
 {% endblock %}

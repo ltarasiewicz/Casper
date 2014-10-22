@@ -69,7 +69,7 @@ class User implements UserInterface, \Serializable
     
     public function __construct() 
     {
-        $this->groups = new ArrayCollection();
+        $this->acceptedEvents = new ArrayCollection();
     }
       
 
@@ -281,4 +281,136 @@ class User implements UserInterface, \Serializable
         $this->setPassword($password);
     }
     
+
+    /**
+     * Add invitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $invitations
+     * @return User
+     */
+    public function addInvitation(\Polcode\CasperBundle\Entity\Invitation $invitations)
+    {
+        $this->invitations[] = $invitations;
+
+        return $this;
+    }
+
+    /**
+     * Remove invitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $invitations
+     */
+    public function removeInvitation(\Polcode\CasperBundle\Entity\Invitation $invitations)
+    {
+        $this->invitations->removeElement($invitations);
+    }
+
+    /**
+     * Get invitations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+
+    /**
+     * Add sentInvitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $sentInvitations
+     * @return User
+     */
+    public function addSentInvitation(\Polcode\CasperBundle\Entity\Invitation $sentInvitations)
+    {
+        $this->sentInvitations[] = $sentInvitations;
+
+        return $this;
+    }
+
+    /**
+     * Remove sentInvitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $sentInvitations
+     */
+    public function removeSentInvitation(\Polcode\CasperBundle\Entity\Invitation $sentInvitations)
+    {
+        $this->sentInvitations->removeElement($sentInvitations);
+    }
+
+    /**
+     * Get sentInvitations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSentInvitations()
+    {
+        return $this->sentInvitations;
+    }
+
+    /**
+     * Add acceptedEvents
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $acceptedEvents
+     * @return User
+     */
+    public function addAcceptedEvent(\Polcode\CasperBundle\Entity\Event $acceptedEvents)
+    {
+        $this->acceptedEvents[] = $acceptedEvents;
+
+        return $this;
+    }
+
+    /**
+     * Remove acceptedEvents
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $acceptedEvents
+     */
+    public function removeAcceptedEvent(\Polcode\CasperBundle\Entity\Event $acceptedEvents)
+    {
+        $this->acceptedEvents->removeElement($acceptedEvents);
+    }
+
+    /**
+     * Get acceptedEvents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAcceptedEvents()
+    {
+        return $this->acceptedEvents;
+    }
+
+    /**
+     * Add ownedEvents
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $ownedEvents
+     * @return User
+     */
+    public function addOwnedEvent(\Polcode\CasperBundle\Entity\Event $ownedEvents)
+    {
+        $this->ownedEvents[] = $ownedEvents;
+
+        return $this;
+    }
+
+    /**
+     * Remove ownedEvents
+     *
+     * @param \Polcode\CasperBundle\Entity\Event $ownedEvents
+     */
+    public function removeOwnedEvent(\Polcode\CasperBundle\Entity\Event $ownedEvents)
+    {
+        $this->ownedEvents->removeElement($ownedEvents);
+    }
+
+    /**
+     * Get ownedEvents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOwnedEvents()
+    {
+        return $this->ownedEvents;
+    }
 }

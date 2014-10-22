@@ -1,5 +1,4 @@
 <?php
-
 namespace Polcode\CasperBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="Polcode\CasperBundle\Entity\EventRepository")
  */
-
 class Event 
 {
     /**    
@@ -31,11 +30,6 @@ class Event
     
     
     /**
-     * @ORM\Column(type="integer")
-     */
-    protected $owner;
-    
-    /**
      *  @ORM\Column(type="string", length=50)
      */
     protected $country;
@@ -48,7 +42,7 @@ class Event
     /**
      *  @ORM\Column(type="string", length=10)
      */
-    protected $postocode;
+    protected $postcode;
     
     /**
      * @ORM\Column(type="datetimetz")     
@@ -76,24 +70,27 @@ class Event
     protected $signupDeadline;
     
     /**
-     * @ORM\Column(type="integer")   
-     */     
-    protected $attendees;
-
-    /**
-     * @ORM\Column(type="integer")   
-     */     
-    protected $invitedGuests;
-    
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="events")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="acceptedEvents")
+     * @ORM\JoinTable(name="Guests")
      */
-    private $users;
+    protected $guests;
+    
+     
+    /**
+     * @ORM\OneToMany(targetEntity="Invitation", mappedBy="event")
+     */    
+    protected $invitations;
+        
+   
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ownedEvents")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+     */
+    protected $owner;
     
     public function __construct() 
     {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
       
 
@@ -205,9 +202,9 @@ class Event
      * @param string $postocode
      * @return Event
      */
-    public function setPostocode($postocode)
+    public function setPostcode($postcode)
     {
-        $this->postocode = $postocode;
+        $this->postcode = $postcode;
 
         return $this;
     }
@@ -217,9 +214,9 @@ class Event
      *
      * @return string 
      */
-    public function getPostocode()
+    public function getPostcode()
     {
-        return $this->postocode;
+        return $this->postcode;
     }
 
     /**
@@ -381,5 +378,61 @@ class Event
     public function getInvitedGuests()
     {
         return $this->invitedGuests;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param integer $owner
+     * @return Event
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return integer 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Polcode\CasperBundle\Entity\User $users
+     * @return Event
+     */
+    public function addUser(\Polcode\CasperBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Polcode\CasperBundle\Entity\User $users
+     */
+    public function removeUser(\Polcode\CasperBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

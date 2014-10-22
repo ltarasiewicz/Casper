@@ -47,7 +47,7 @@ class Invitation
       */    
     protected $createdAt;
     
-    public function __construct($user, $event)
+    public function __construct(Event $event, $user)
     {
         $this->user = $user;
         $this->event = $event;

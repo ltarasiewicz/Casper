@@ -38,6 +38,18 @@ invite_page:
     path: /invite/{id}
     defaults:   { _controller: PolcodeCasperBundle:User:getAllUsers }
     
+send_invitations:
+    path: /send
+    defaults:   { _controller: PolcodeCasperBundle:Invitation:sendInvitations }
+    
+accept_event:
+    path: /accept/{id}
+    defaults:    { _controller: PolcodeCasperBundle:Invitation:acceptInvitation }
+    
+decline_event:    
+    path: /decline/{id}
+    defaults:    { _controller: PolcodeCasperBundle:Invitation:declineInvitation }
+    
 login_page:
     path:   /login
     defaults: { _controller: PolcodeCasperBundle:User:login }    

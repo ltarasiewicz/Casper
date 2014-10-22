@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="Polcode\CasperBundle\Entity\EventRepository")
  */
 class Event 
 {
@@ -89,7 +90,7 @@ class Event
     
     public function __construct() 
     {
-        $this->users = new ArrayCollection();
+        $this->guests = new ArrayCollection();
     }
       
 
@@ -433,5 +434,71 @@ class Event
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add guests
+     *
+     * @param \Polcode\CasperBundle\Entity\User $guests
+     * @return Event
+     */
+    public function addGuest(\Polcode\CasperBundle\Entity\User $guests)
+    {
+        $this->guests[] = $guests;
+
+        return $this;
+    }
+
+    /**
+     * Remove guests
+     *
+     * @param \Polcode\CasperBundle\Entity\User $guests
+     */
+    public function removeGuest(\Polcode\CasperBundle\Entity\User $guests)
+    {
+        $this->guests->removeElement($guests);
+    }
+
+    /**
+     * Get guests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
+
+    /**
+     * Add invitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $invitations
+     * @return Event
+     */
+    public function addInvitation(\Polcode\CasperBundle\Entity\Invitation $invitations)
+    {
+        $this->invitations[] = $invitations;
+
+        return $this;
+    }
+
+    /**
+     * Remove invitations
+     *
+     * @param \Polcode\CasperBundle\Entity\Invitation $invitations
+     */
+    public function removeInvitation(\Polcode\CasperBundle\Entity\Invitation $invitations)
+    {
+        $this->invitations->removeElement($invitations);
+    }
+
+    /**
+     * Get invitations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInvitations()
+    {
+        return $this->invitations;
     }
 }

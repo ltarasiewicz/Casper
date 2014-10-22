@@ -8,12 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <form class="form-signin" role="form" action="{{ path('login_check') }}" method="post">
-        <select multiple class="form-control">
+    <form class="form-signin" role="form" action="{{ path('send_invitations') }}" method="post" name="invitationSender">
+        <select multiple class="form-control" name="userToInvite">
             {% for user in users %}  
-                <option>{{ user.username }}</option>
+                <option value="{{ user.id }}">{{ user.username }}</option>
             {% endfor %}
         </select>
+        <input type="hidden" value="{{ eventToInviteTo.id }}" name="eventToInviteTo"/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Send invitations</button>
     </form>
 {% endblock %}
