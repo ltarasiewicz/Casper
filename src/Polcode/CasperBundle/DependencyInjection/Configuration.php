@@ -18,7 +18,11 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('polcode_casper');
+        $rootNode = $treeBuilder->root('polcode_casper')->children()
+            ->variableNode('google_api_key')
+            ->defaultValue('AIzaSyC7cwkNfJdNhb9pW8CjmrfDs8jU_5C6PAM')
+            ->end();
+                    
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
