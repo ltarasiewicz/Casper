@@ -13,7 +13,6 @@ class EventController extends Controller
 {
     public function addEventAction(Request $request)
     {
-        var_dump($this->container->getParameter('google_api_key'));
         $event = new Event;
         $form = $this->createForm('event', $event);
         

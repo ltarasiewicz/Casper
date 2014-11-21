@@ -7,5 +7,11 @@ services:
     polcode_casper.form.type.event:
         class: Polcode\CasperBundle\Form\Type\EventType
         tags:
-            - { name: form.type, alias: event }         
+            - { name: form.type, alias: event }  
+            
+    polcode.twig.google_api_key_expose_extension:
+        class: Polcode\CasperBundle\Twig\GoogleApiKeyExposeExtension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }
             
