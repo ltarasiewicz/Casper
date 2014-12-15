@@ -42,6 +42,12 @@ class EventType extends AbstractType
             ->add('signupDeadline', 'datetime', array(
                 'label'   =>  'Signup deadline'
             ))                    
+            ->add('latitude', 'hidden', array(
+            
+            ))    
+            ->add('longitude', 'hidden', array(
+               
+            ))                 
             ->add('register', 'submit', array(
                 'label' => 'Add event'));        
     }

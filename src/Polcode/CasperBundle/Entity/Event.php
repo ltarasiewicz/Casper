@@ -38,11 +38,22 @@ class Event
      *  @ORM\Column(type="string", length=50)
      */   
     protected $city;
+     
     
     /**
      *  @ORM\Column(type="string", length=10)
      */
     protected $postcode;
+    
+    /**
+     *  @ORM\Column(type="decimal", precision=10, scale=6, nullable=true)   
+     */
+    protected $latitude;
+    
+    /**
+     *  @ORM\Column(type="decimal", precision=10, scale=6, nullable=true)   
+     */    
+    protected $longitude;
     
     /**
      * @ORM\Column(type="datetimetz")     
@@ -500,5 +511,51 @@ class Event
     public function getInvitations()
     {
         return $this->invitations;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     * @return Event
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     * @return Event
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 }

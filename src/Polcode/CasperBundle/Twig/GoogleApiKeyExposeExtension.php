@@ -25,5 +25,4 @@ class GoogleApiKeyExposeExtension extends \Twig_Extension
         return 'google_api_key_expose_extension';
     }
     
-    
 }
