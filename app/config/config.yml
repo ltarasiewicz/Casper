@@ -73,4 +73,15 @@ swiftmailer:
 
 # Google Maps Api Key    
 polcode_casper:
-    google_api_key: "AIzaSyC7cwkNfJdNhb9pW8CjmrfDs8jU_5C6PAM"
+    google_api_key: "AIzaSyC7cwkNfJdNhb9pW8CjmrfDs8jU_5C6PAM"    
+   
+# HWIOAuth
+hwi_oauth:
+    firewall_name: oauth_secured_area
+    resource_owners:
+        fsb:
+            type: facebook
+            client_id: asd23r2
+            client_secret: kdsjfs3
+            options:
+                disply: popup
