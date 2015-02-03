@@ -10,17 +10,26 @@
 {% endblock %}
 
 {% block content %}
-    {{ form_start(form, { 'attr': {'class': 'form-horizontal col-sm-offset-2 col-sm-8' }}) }}
-        {{ form_errors(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.public) }}
-        {{ form_row(form.country) }}
-        {{ form_row(form.city) }}
-        {{ form_row(form.postcode) }}
-        {{ form_row(form.date) }}       
-        {{ form_row(form.duration) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.maxGuests) }}
-        {{ form_row(form.signupDeadline) }}       
-    {{ form_end(form) }}   
+    <div id="add-event-form">
+        {{ form_start(form, { 'attr': {'class': 'form-horizontal col-sm-offset-2 col-sm-8' }}) }}
+            {{ form_errors(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.public) }}
+            {{ form_row(form.country) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.postcode) }}
+            {{ form_row(form.date) }}       
+            {{ form_row(form.duration) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.maxGuests) }}
+            {{ form_row(form.signupDeadline) }}       
+        {{ form_end(form) }}   
+    </div>
+    
+    <div id="map-panel">
+        <input type="button" value="Set the marker" onclick="codeAddress()">
+    </div>
+    <div id="map-canvas">
+        
+    </div>
 {% endblock %}

@@ -18,15 +18,15 @@
         {% endblock %}
         
         {% block javascript %}
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
             {% javascripts 
                 'bundles/polcodecasper/js/jquery-1.11.1.min.js' 
                 'bundles/polcodecasper/js/bootstrap.min.js' 
                 'bundles/polcodecasper/js/scripts.js' 
                 'bundles/polcodecasper/js/facebook-sdk.js'
                 'bundles/polcodecasper/bower_components/moment/min/moment.min.js'
-                'bundles/polcodecasper/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' 
-                'https://maps.googleapis.com/maps/api/js?key=AIzaSyC7cwkNfJdNhb9pW8CjmrfDs8jU_5C6PAM' %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
+                'bundles/polcodecasper/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>                
             {% endjavascripts %}
         {% endblock %}
         
@@ -36,7 +36,8 @@
     </head>
   <body>
 
-    <div class="container">
+    <div class="container">       
+        
       <div class="header">          
           
         {% block navigation %}          
