@@ -24,12 +24,15 @@
             {{ form_row(form.maxGuests) }}
             {{ form_row(form.signupDeadline) }}       
         {{ form_end(form) }}   
-    </div>
     
-    <div id="map-panel">
-        <input type="button" value="Set the marker" onclick="codeAddress()">
-    </div>
-    <div id="map-canvas">
+        <div class="clearfix"></div>
+
+        <div id="map-panel">
+            <input type="button" value="Set the marker" onclick="codeAddress()">
+        </div>
+        <div id="map-canvas"></div>
         
     </div>
+       
 {% endblock %}
+

@@ -4,8 +4,18 @@ hwi_oauth_redirect:
     
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix: /login
+    prefix: /login2
 
+facebook_login:
+    pattern: /login2/check-facebook
+    
+#hwi_oauth_connect:
+#  resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+#  prefix:   /oauth/connect
+  
+hwi_facebook_login:
+  pattern: /oauth/connect/check-facebook  
+  
 polcode_casper:
     resource: "@PolcodeCasperBundle/Resources/config/routing.yml"
     prefix:   /

@@ -77,11 +77,15 @@ polcode_casper:
    
 # HWIOAuth
 hwi_oauth:
-    firewall_name: oauth_secured_area
+    firewall_name: secured_area
     resource_owners:
-        fsb:
+        facebook:
             type: facebook
-            client_id: asd23r2
-            client_secret: kdsjfs3
+            client_id: 295484740636624
+            client_secret: 6615d589d08d1c28e70fd06a265a77ec
+            scope: "email"
             options:
-                disply: popup
+                display: popup
+services:
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider

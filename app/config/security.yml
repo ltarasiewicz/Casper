@@ -54,26 +54,25 @@ security:
                 check_path: login_check
             logout:
                 path: /logout
-                target: / 
-        
-        oauth_secured_area:
-            anonymous: ~
+                target: /  
+                
             oauth:
                 resource_owners:
-                    facebook: "/login/check-facebook"
-                login_path: /login/facebook-login
-                use_forward: false
-                failure_path: /facebook-login
-                
+                    facebook:   /login2/check-facebook
+                login_path:     /login2
+
+                failure_path:   login2              
                 oauth_user_provider:
-                    service: hwi_oauth.user.provider                    
+                    service: hwi_oauth.user.provider.entity
+            
+            
                        
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/book/security.html#security-book-access-control-matching-options
     access_control:
-        - { path: ^/facebook-login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login2, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         
         #- { path: ^/, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
