@@ -5,9 +5,9 @@
         
         {% block stylesheets %}
             {% stylesheets 
-                'bundles/polcodecasper/css/jumbotron-narrow.css' filter='cssrewrite' 
-                'bundles/polcodecasper/css/bootstrap.min.css' filter='cssrewrite'
-                'bundles/polcodecasper/css/styles.css' filter='cssrewrite'
+                'assets/css/jumbotron-narrow.css' filter='cssrewrite' 
+                'assets/css/bootstrap.min.css' filter='cssrewrite'
+                'assets/css/styles.css' filter='cssrewrite'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -20,9 +20,9 @@
         {% block javascript %}
             <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}"></script>
             {% javascripts 
-                'bundles/polcodecasper/js/jquery-1.11.2.min.js' 
-                'bundles/polcodecasper/js/bootstrap.min.js' 
-                'bundles/polcodecasper/js/scripts.js'                
+                'assets/js/jquery-1.11.2.min.js' 
+                'assets/js/bootstrap.min.js' 
+                'assets/js/scripts.js'                
              %}
 
                 <script type="text/javascript" src="{{ asset_url }}"></script>                
