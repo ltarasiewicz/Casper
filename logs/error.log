@@ -1,0 +1,2 @@
+[Tue Feb 10 21:33:47.829142 2015] [authz_core:error] [pid 2472] [client 192.168.33.1:43858] AH01630: client denied by server configuration: /var/www/public/casper.local/src/
+[Tue Feb 10 21:33:47.848278 2015] [authz_core:error] [pid 2472] [client 192.168.33.1:43858] AH01630: client denied by server configuration: /var/www/public/casper.local/app/

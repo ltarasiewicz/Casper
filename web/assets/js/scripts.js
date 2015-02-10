@@ -39,6 +39,8 @@ function showSingleEventMap(latitude, longitude) {
 function codeAddress() {
     var address = document.getElementById('event_city').value;
     geocoder.geocode( { 'address': address }, function(results, status) {
+        document.getElementById('event_latitude').value = results[0].geometry.location.k;
+        document.getElementById('event_longitude').value = results[0].geometry.location.D;
         if (status == google.maps.GeocoderStatus.OK) {
             singleEventMap.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
